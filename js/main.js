@@ -9,13 +9,33 @@ $(document).ready(function(){
       $(window).scroll(function() {
         // HTML5 proves useful for helping with creating JS functions!
         // also, negative value because we're scrolling upwards                             
-        var yPos = -($window.scrollTop() / $scroll.data('speed')); 
+        var yPos = -($window.scrollTop() * $scroll.data('speed')); 
          
         // background position
         var deg = 'rotate(' + yPos + 'deg)';
  
         // move the background
         $scroll.css({ '-webkit-transform': deg });    
+      }); // end window scroll
+   });  // end section function
+
+   $('#navbar').each(function(){
+     // declare the variable to affect the defined data-type
+     var $scroll = $(this);
+                     
+      $(window).scroll(function() {
+        // HTML5 proves useful for helping with creating JS functions!
+        // also, negative value because we're scrolling upwards                             
+        var yPos = 1 - $window.scrollTop() * $scroll.data('speed') / 20;
+ 
+        // move the background
+        $scroll.css({ 'opacity': yPos });
+
+        if(yPos <= 0) {
+          $scroll.css({ 'display': 'none' });
+        } else {
+          $scroll.css({ 'display': 'block' });
+        }
       }); // end window scroll
    });  // end section function
 }); // close out script
