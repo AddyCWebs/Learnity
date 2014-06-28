@@ -1,3 +1,5 @@
+offsetcolors = 0;
+
 $(document).ready(function(){
    // cache the window object
    $window = $(window);
@@ -39,3 +41,51 @@ $(document).ready(function(){
       }); // end window scroll
    });  // end section function
 }); // close out script
+
+$("#circle").css('top', ($(window).height() - $("#circle").height())/2);
+$("#circle").children("h1").css("margin-top", ($("#circle").height() - $("#circle").children("h1").height())/2)
+
+function floatd() {
+  $("#scrlwrp").animate({bottom: "-10"}, function() {
+    floatu()
+  })
+}
+
+function floatu() {
+  $("#scrlwrp").animate({bottom: 0}, function() {
+    floatd()
+  })
+}
+
+$('.image').each(function() {
+  $(this).css('height', $(this).parent().children(".srcheight").height())
+  console.log('OK')
+})
+
+floatd();
+
+$('#autonomie').waypoint(function(direction) {
+  if(direction == 'down') {
+    $('.ai').animate({
+      'top': 0,
+      'opacity': 1,
+    }, 'slow')
+  }
+}, {
+  offset: function() {
+    return $(window).height()/3;
+  }
+});
+
+$('#social').waypoint(function(direction) {
+  if(direction == 'down') {
+    $('.si').animate({
+      'top': 0,
+      'opacity': 1,
+    }, 'slow')
+  }
+}, {
+  offset: function() {
+    return $(window).height()/3;
+  }
+});
